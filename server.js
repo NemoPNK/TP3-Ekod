@@ -36,10 +36,15 @@ app.get('/api/tasks', (req, res) => {
 app.put('/api/tasks/:id', (req, res) => {
     const taskID = req.params.id;
     const putTask = req.body;
+    const task = MyTasks.find(task => task.id === Number(taskID))
+
+    task.id = req.body;
+    task.complété = req.body;
+    task.titre = req.body;
 
     res.status(200).json({
         message: 'Put ok',
-        task: putTask
+        task: task
     });
 });
 
