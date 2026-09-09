@@ -62,8 +62,9 @@ app.delete('/api/tasks/:id', (req, res) => {
 // Fonctionnalité A : marquer une tache complétée
 app.patch('/api/tasks/:id', (req, res) => {
     const taskID = req.params.id;
-    const task = MyTasks.findIndex(task => task.id === Number(taskID))
+    const task = MyTasks.find(task => task.id === Number(taskID))
 
+    task.complété = true;
 
     res.status(200).json({
         message: 'tache complétée',
@@ -74,7 +75,7 @@ app.patch('/api/tasks/:id', (req, res) => {
 // Tableau
 
 const MyTasks = [
-    { id: 0, complété: false, titre: "monter" },
+    { id: 0, complété: true, titre: "monter" },
     { id: 1, complété: false, titre: "up" },
     { id: 2, complété: false, titre: "down" },
     { id: 3, complété: false, titre: "boom" },
