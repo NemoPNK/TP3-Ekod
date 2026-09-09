@@ -50,7 +50,13 @@ app.put('/api/tasks/:id', (req, res) => {
 
 app.delete('/api/tasks/:id', (req, res) => {
     const taskID = req.params.id;
-    
+    const task = MyTasks.findIndex(task => task.id === Number(taskID))
+    MyTasks.splice(task, 1);
+
+    res.status(200).json({
+        message: 'Delete ok',
+        task: task
+    });
 })
 
 // Tableau
