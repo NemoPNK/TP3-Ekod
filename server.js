@@ -59,6 +59,32 @@ app.delete('/api/tasks/:id', (req, res) => {
     });
 })
 
+// test de nouvelles routes
+
+app.patch('/api/tasks/:id/completed', (req, res) => {
+    const taskID = req.params.id;
+    const task = MyTasks.find(task => task.id === Number(taskID))
+
+    task.complété = true;
+
+    res.status(200).json({
+        message: 'Patch ok',
+        task: task
+    });
+})
+
+app.get('/api/tasks/completed', (req, res) => {
+    const task = MyTasks.find(task => task.complété === true)
+
+    console.log("Task completed: ", task)
+
+    res.status(200).json({
+        message: 'Filter ok',
+        task: task
+    });
+})
+
+
 // Tableau
 
 const MyTasks = [
