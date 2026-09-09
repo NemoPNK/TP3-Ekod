@@ -38,9 +38,9 @@ app.put('/api/tasks/:id', (req, res) => {
     const putTask = req.body;
     const task = MyTasks.find(task => task.id === Number(taskID))
 
-    task.id = req.body;
-    task.complété = req.body;
-    task.titre = req.body;
+    task.id = req.body.id;
+    task.complété = req.body.complété;
+    task.titre = req.body.titre;
 
     res.status(200).json({
         message: 'Put ok',
@@ -74,7 +74,7 @@ app.patch('/api/tasks/:id/completed', (req, res) => {
 })
 
 app.get('/api/tasks/completed', (req, res) => {
-    const task = MyTasks.find(task => task.complété === true)
+    const task = MyTasks.filter(task => task.complété === true)
 
     console.log("Task completed: ", task)
 
